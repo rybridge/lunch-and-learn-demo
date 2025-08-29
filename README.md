@@ -1,24 +1,24 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+I get zero credit for this pattern/setup. This is based off this article https://boringrails.com/articles/self-updating-components/
 
-Things you may want to cover:
+## Setup
+```
+# Install deps
+bundle install
 
-* Ruby version
+# Create the database
+rails db:create
 
-* System dependencies
+# Run migrations
+rails db:migrate
 
-* Configuration
+# Seed the database (if seeds exist)
+rails db:seed
 
-* Database creation
+# Start it up
+rails server
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Might need to tailwind watch for CSS changes to show
+rails tailwindcss:watch
+```
