@@ -1,0 +1,20 @@
+<!-- app/views/users/index.html.erb -->
+
+<div class="max-w-4xl mx-auto p-6">
+  <h1 class="text-3xl font-bold text-gray-900 mb-6">Self-Updating Components Demo</h1>
+
+  <%= turbo_stream_from "users" %>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="users_list">
+    <% @users.each do |user| %>
+      <%= render UserCard.new(user: user) %>
+    <% end %>
+  </div>
+
+  <div class="mt-8 text-center">
+    <%= button_to "Add Demo User",
+      users_path(format: :turbo_stream),
+      method: :post,
+      form: { data: { turbo_frame: "users_list" } },
+      class: "bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded" %>
+  </div>
+</div>
