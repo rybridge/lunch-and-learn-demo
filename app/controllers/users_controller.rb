@@ -11,9 +11,10 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         Turbo::StreamsChannel.broadcast_append_to(
-          UserCard.new(user: @user).broadcast_channel,
+          "users",
           target: "users_list",
-          render: UserCard.new(user: @user)
+          renderable: UserCard.new(user: @user),
+          layout: false
         )
         format.turbo_stream
         format.html { redirect_to users_path, notice: "User created!" }
